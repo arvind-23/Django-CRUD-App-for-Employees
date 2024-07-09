@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="container">
+ 
+        <nav class="navbar navbar-expand-sm bg-light">
+<!-- Brand/logo -->
+<a class="navbar-brand" href="#">
+<!--<img src="#" alt="logo" style="width:40px;">--> Tata Tech
+</a>
+<!-- Links -->
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="{%url 'index' %}">Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{% url 'upload-employee' %}">Add new Employee</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">Contact</a>
+</li>
+</ul>
+</nav>
+</br>
+ 
+        {%block content%}
+<table class="w-50 table table-light" style="border-radius:10px;background-color:'lightblue';">
+<form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+         {% for field in upload_form %}
+<tr>
+<th>{{field.label}} </th>
+<td>{{field}}</td>  
+</tr>
+        {%endfor%}
+</table>
+<button type="submit" class="btn btn-lg btn-warning">Submit</button>
+</form>
+</div>   
+    {%endblock%} 
+</body>
+</html> 
